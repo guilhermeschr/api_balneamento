@@ -10,3 +10,9 @@ package-lock.json
 
 # database
 *.db
+
+# env
+.env
+
+# idea
+.idea

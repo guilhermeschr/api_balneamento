@@ -47,4 +47,11 @@ const deleteCidade = async ( req, res ) => {
     res.status(204).json({message: 'Cidade excluída com sucesso!'})
 }
 
-module.exports = {getAllCidades, postCidade, deleteCidade};
+const putCidade = ( req, res ) => {
+    const { pool } = req;
+    const { id } = req.params;
+    const { nome , id_estado} = req.body;
+
+}
+
+module.exports = {getAllCidades, postCidade, deleteCidade, putCidade};

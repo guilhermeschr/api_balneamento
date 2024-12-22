@@ -5,6 +5,6 @@ const { getAllCidades, postCidade, deleteCidade, putCidade } = require('../contr
 router.get('/', getAllCidades);
 router.post('/', postCidade);
 router.delete('/:id', deleteCidade);
-// router.put('/:id', putCidade);
+router.put('/:id', putCidade);
 
 module.exports = router;

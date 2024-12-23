@@ -47,11 +47,48 @@ const deleteCidade = async ( req, res ) => {
     res.status(204).json({message: 'Cidade excluída com sucesso!'})
 }
 
-const putCidade = ( req, res ) => {
+const putCidade = async ( req, res ) => {
     const { pool } = req;
     const { id } = req.params;
     const { nome , id_estado} = req.body;
 
+    let updates = [];
+    let values = [];
+    let index = 1;
+
+    if(nome){
+        updates.push(`nome = $${index}`);
+        values.push(nome);
+        index++;
+    }
+    if(id_estado){
+        updates.push(`id_estado = $${index}`);
+        values.push(id_estado);
+        index++;
+    }
+
+    if(updates.length === 0){
+        return res.status(400).json({ message: 'Nenhum campo válido fornecido para atualização' });
+    }
+
+    values.push(id);
+
+    const query = `UPDATE cidades SET ${updates.join(', ')} WHERE id = $${index} RETURNING *`
+
+    try{
+        const result = await pool.query(query,values);
+
+        // Se a atualização for bem-sucedida, o `result.rowCount` será maior que 0
+        if (result.rowCount === 0) {
+            return res.status(404).json({ message: 'Estado não encontrado' });
+        }
+
+        //retorna os dados alterados
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Erro ao editar cidade' })
+    }
 }
 
 module.exports = {getAllCidades, postCidade, deleteCidade, putCidade};

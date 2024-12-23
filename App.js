@@ -8,6 +8,7 @@ const { Pool } = require('pg'); // Importa o Pool do pg para gerenciar conexões
 const userRoutes = require('./routes/userRoutes');
 const estadosRoutes = require('./routes/estadosRoutes');
 const cidadesRoutes = require('./routes/cidadesRoutes');
+const pontosColetasRoutes = require('./routes/pontosColetasRoutes');
 
 // Cria uma instância do servidor Express
 const app = express();
@@ -35,6 +36,7 @@ app.use((req, res, next) => {
 app.use('/api/usuarios', userRoutes);
 app.use('/api/estados', estadosRoutes);
 app.use('/api/cidades', cidadesRoutes);
+app.use('/api/pontoscoletas', pontosColetasRoutes);
 
 // Inicia o servidor na porta 3000
 const PORT = process.env.PORT || 3000;

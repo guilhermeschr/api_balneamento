@@ -25,6 +25,7 @@ const createUser = async (req, res) => {
         res.status(500).json({ message: 'Erro ao inserir usuário' });
     }
 };
+
 const deleteUser = async ( req, res ) => {
     const  { pool } = req;
     const { id } = req.params;

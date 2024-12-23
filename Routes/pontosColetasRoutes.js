@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getAllPontosColetas } = require('../controllers/pontosColetasController');
-//, postPontosColetas, deletePontosColetas, putPontosColetas
+const { getAllPontosColetas, postPontosColeta, deletePontosColeta, putPontosColeta } = require('../controllers/pontosColetasController');
+
 // Rota para obter todos os usuários
 router.get('/', getAllPontosColetas);
-// router.post('/', postPontosColetas);
-// router.delete('/:id', deletePontosColetas);
-// router.put('/:id', putPontosColetas);
+router.post('/', postPontosColeta);
+router.delete('/:id', deletePontosColeta);
+router.put('/:id', putPontosColeta);
 
 module.exports = router;

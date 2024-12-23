@@ -9,6 +9,10 @@ const userRoutes = require('./routes/userRoutes');
 const estadosRoutes = require('./routes/estadosRoutes');
 const cidadesRoutes = require('./routes/cidadesRoutes');
 const pontosColetasRoutes = require('./routes/pontosColetasRoutes');
+const campanhasbalneamentoRoutes = require('./routes/campanhasbalneamentoRoutes');
+const boletinsRoutes = require('./routes/boletinsRoutes');
+
+
 
 // Cria uma instância do servidor Express
 const app = express();
@@ -37,6 +41,8 @@ app.use('/api/usuarios', userRoutes);
 app.use('/api/estados', estadosRoutes);
 app.use('/api/cidades', cidadesRoutes);
 app.use('/api/pontoscoletas', pontosColetasRoutes);
+app.use('/api/campanhasbalneamento', campanhasbalneamentoRoutes);
+app.use('/api/boletins', boletinsRoutes);
 
 // Inicia o servidor na porta 3000
 const PORT = process.env.PORT || 3000;

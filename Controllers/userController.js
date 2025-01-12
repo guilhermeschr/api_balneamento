@@ -1,3 +1,7 @@
+const bcrypt = require('bcrypt');
+const secreto = process.env.JWT_SECRET;
+
+
 const getAllUsers = async (req, res) => {
     const { pool } = req; // Pega o pool de conexões do banco de dados
 
@@ -14,20 +18,28 @@ const createUser = async (req, res) => {
     const { pool } = req; // Pega o pool de conexões do banco de dados
     const { nome, email, senha } = req.body; // Pega os dados do usuário no corpo da requisição
 
+    if (!nome || !senha || !email) {
+        return res.status(400).json({ error: 'Preencha todos os campos' });
+    }
+
     try {
+        const hashedPassword = await bcrypt.hash(senha, 10);
         const result = await pool.query(
             'INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING *',
-            [ nome, email, senha]
+            [ nome, email, hashedPassword]
         );
         res.status(201).json(result.rows[0]); // Retorna o usuário criado
     } catch (error) {
+        if (error.code === '23505') {
+            return res.status(400).json({ error: 'Usuário já existe' });
+        }
         console.error(error);
         res.status(500).json({ message: 'Erro ao inserir usuário' });
     }
 };
 
 const deleteUser = async ( req, res ) => {
-    const  { pool } = req;
+    const { pool } = req;
     const { id } = req.params;
 
     try{

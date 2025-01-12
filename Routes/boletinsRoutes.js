@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { getAllBoletins, postBoletim, deleteBoletim, putEstado } = require('../controllers/boletinsController');
+const { getAllBoletins, postBoletim, deleteBoletim, putBoletim } = require('../controllers/boletinsController');
+const {autentificacao} = require("../Controllers/loginController");
 
 router.get('/',getAllBoletins);
-router.post('/',postBoletim);
-router.delete('/:id',deleteBoletim);
-router.put('/:id', putEstado);
+router.post('/',autentificacao, postBoletim);
+router.delete('/:id',autentificacao, deleteBoletim);
+router.put('/:id',autentificacao, putBoletim);
 
 module.exports = router;

@@ -11,6 +11,7 @@ const cidadesRoutes = require('./routes/cidadesRoutes');
 const pontosColetasRoutes = require('./routes/pontosColetasRoutes');
 const campanhasbalneamentoRoutes = require('./routes/campanhasbalneamentoRoutes');
 const boletinsRoutes = require('./routes/boletinsRoutes');
+const loginRoutes = require('./routes/loginRoutes');
 
 
 
@@ -43,6 +44,8 @@ app.use('/api/cidades', cidadesRoutes);
 app.use('/api/pontoscoletas', pontosColetasRoutes);
 app.use('/api/campanhasbalneamento', campanhasbalneamentoRoutes);
 app.use('/api/boletins', boletinsRoutes);
+
+app.use('/api/login',loginRoutes);
 
 // Inicia o servidor na porta 3000
 const PORT = process.env.PORT || 3000;

@@ -14,7 +14,8 @@ const getAllCampanhas = async ( req, res ) => {
             'JOIN usuarios AS u ' +
             'ON cb.id_usuario_criador = u.id ' +
             'JOIN estados AS e ' +
-            'ON cb.id_estado = e.id');
+            'ON cb.id_estado = e.id ' +
+            'ORDER BY cb.id DESC');
         res.status(200).json(result.rows);
     } catch (error) {
         console.error(error);
@@ -52,10 +53,10 @@ const deleteCampanha = async  ( req, res ) => {
 
         // Se a exclusão for bem-sucedida, o `result.rowCount` será maior que 0
         if (result.rowCount === 0) {
-            return res.status(404).json({ message: 'Usuario não encontrado' });
+            return res.status(404).json({ message: 'Campanha não encontrada' });
         }
 
-        res.status(204).json({message: 'Campanha de balneamento excluído com sucesso!'})
+        res.status(200).json({message: 'Campanha de balneamento excluída com sucesso!'})
 
     } catch ( error ) {
         console.error(error);

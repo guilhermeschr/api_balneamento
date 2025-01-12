@@ -60,7 +60,7 @@ const deleteBoletim = async ( req, res ) => {
     }
 }
 
-const putEstado = async ( req, res ) => {
+const putBoletim = async ( req, res ) => {
     const { pool } = req;
     const { id } = req.params;
     const { data_coleta, qualidade_agua, observacao, id_ponto_coleta, id_usuario, id_campanha } = req.body;
@@ -127,4 +127,4 @@ const putEstado = async ( req, res ) => {
     }
 }
 
-module.exports = { getAllBoletins, postBoletim, deleteBoletim, putEstado };
+module.exports = { getAllBoletins, postBoletim, deleteBoletim, putBoletim };

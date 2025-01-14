@@ -13,7 +13,6 @@ const login = async (req, res) => {
     }
 
     try{
-        const hashedSenha = await bcrypt.hash(senha, 10);
         const result = await pool.query('SELECT * FROM usuarios WHERE email = $1', [email]);
         const user = result.rows[0];
 

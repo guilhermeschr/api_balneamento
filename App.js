@@ -44,7 +44,6 @@ app.use('/api/cidades', cidadesRoutes);
 app.use('/api/pontoscoletas', pontosColetasRoutes);
 app.use('/api/campanhasbalneamento', campanhasbalneamentoRoutes);
 app.use('/api/boletins', boletinsRoutes);
-
 app.use('/api/login',loginRoutes);
 
 // Inicia o servidor na porta 3000
